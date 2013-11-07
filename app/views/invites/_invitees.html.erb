@@ -1,0 +1,9 @@
+<h3>Invitees</h3>
+
+<ul>
+  <% invites.each do |invite| %>
+    <li><%= invite.name %> | 
+     <%= attendee_list(invite) %>
+   </li>
+    <% end %>
+</ul>

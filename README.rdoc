@@ -1,0 +1,64 @@
+
+Tables:
+
+A user should be able to create an event. - /events/new
+They should be able to invite new users to that event - /events/1/invites/new
+A user should be able to rsvp to the event - /invites/1/edit
+
+
+Users 
+id    name
+
+-has_many :events, :foreign_key => "inviter_id" (users make events, and a user can make more than one)
+-has_many :invites, :foreign_key => "invitee_id"
+
+
+Events
+id    name     date    user_id
+
+-belongs_to :inviter, :class_name => "User" (a user, as 'inviter', creates an event)
+-has_many :invites (you can send out more than one invite to an event)
+
+
+Invites
+id    user_id    event_id 
+
+-belongs_to :inviter_id, :class_name => "User" (invites are made by users)
+-belongs_to :event (invites are only useful so long as they are attached to events)
+
+
+
+Bids
+id    amount    bidder_id     auction_id
+              (bids belong to bidders AND auctions)
+
+
+
+== README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.

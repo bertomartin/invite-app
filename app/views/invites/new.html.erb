@@ -1,0 +1,40 @@
+<strong><%= link_to @invite.event.name, event_path(@invite.event) %></strong>
+
+<hr>
+<br>
+
+<%= form_for(@invite) do |f| %>
+  <% if @invite.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@invite.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+      <ul>
+      <% @invite.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :event_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<br>
+<hr>
+
+<h3>Invitees</h3>
+
+<ul>
+  <% @invites.each do |invite| %>
+    <li><%= invite.name %></li>
+  <% end %>
+</ul>
